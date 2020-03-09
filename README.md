@@ -1,6 +1,6 @@
 
 ### `Intro`
-// explain
+Plugin to hook before and start compile/build to run a commands
 
 #### `Install`
 ``` bash

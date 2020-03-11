@@ -3,7 +3,7 @@ const {spawn, exec} = require('child_process'),
 	os = require('os');
 
 const run = (c, o) => {
-	if (os.platform() === 'win32') {
+	/*if (os.platform() === 'win32') {
 		const cmd = exec(c, o, (e, stdout, stderr) => {
 			if (e) {
 				throw e;
@@ -12,7 +12,7 @@ const run = (c, o) => {
 			process.stderr.write(stderr);
 		});
 		return cmd;
-	}
+	}*/
 	const cmd = spawn('sh', ['-c', c], o);
 	cmd.stdout.on('data', (d) => {
 		process.stdout.write(d);

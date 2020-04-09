@@ -8,7 +8,7 @@ const safe = (cd) => {
 	} catch (e) {
 		//
 	}
-}
+};
 
 const run = (c, o) => {
 	const cmd = spawn('sh', ['-c', c], o);
@@ -38,10 +38,12 @@ class ShellPlugin {
 
 	clean() {
 		for (let i in this.process) {
-			kill(this.process[i].pid).catch(() => null).then(() => {
-				safe(() => this.process[i].stdin.pause());
-				safe(() => this.process[i].kill());
-			});
+			if (this.process[i]) {
+				kill(this.process[i].pid).catch(() => null).then(() => {
+					safe(() => this.process[i].stdin.pause());
+					safe(() => this.process[i].kill());
+				});
+			}
 			this.process[i] = null;
 		}
 	}

@@ -1,18 +1,16 @@
 
-const {spawn, exec} = require('child_process'),
-	os = require('os');
+const {spawn} = require('child_process'),
+	kill = require('kill.tree');
+
+const safe = (cd) => {
+	try {
+		cd();
+	} catch (e) {
+		//
+	}
+}
 
 const run = (c, o) => {
-	/*if (os.platform() === 'win32') {
-		const cmd = exec(c, o, (e, stdout, stderr) => {
-			if (e) {
-				throw e;
-			}
-			process.stdout.write(stdout);
-			process.stderr.write(stderr);
-		});
-		return cmd;
-	}*/
 	const cmd = spawn('sh', ['-c', c], o);
 	cmd.stdout.on('data', (d) => {
 		process.stdout.write(d);
@@ -40,11 +38,11 @@ class ShellPlugin {
 
 	clean() {
 		for (let i in this.process) {
-			try {
-				this.process[i].close();
-			} catch (e) {
-				//
-			}
+			kill(this.process[i].pid).catch(() => null).then(() => {
+				safe(() => this.process[i].stdin.pause());
+				safe(() => this.process[i].kill());
+			});
+			this.process[i] = null;
 		}
 	}
 

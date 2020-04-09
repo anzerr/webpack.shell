@@ -3,9 +3,7 @@
 	"version": "1.0.1",
 	"description": "",
 	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
+	"scripts": {},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
@@ -14,5 +12,8 @@
 	},
 	"eslintConfig": {
 		"extends": "eslint-config-basic"
+	},
+	"dependencies": {
+		"kill.tree": "git+https://github.com/anzerr/kill.tree.git"
 	}
 }

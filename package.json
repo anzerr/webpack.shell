@@ -7,12 +7,7 @@
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
-	"devDependencies": {
-		"eslint-config-basic": "git+https://git@github.com/anzerr/eslintrc.git"
-	},
-	"eslintConfig": {
-		"extends": "eslint-config-basic"
-	},
+	"devDependencies": {},
 	"dependencies": {
 		"kill.tree": "git+https://github.com/anzerr/kill.tree.git"
 	}
